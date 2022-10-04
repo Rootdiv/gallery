@@ -1,9 +1,92 @@
-.button {
+.btn {
   display: block;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.container {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.logout {
+  position: absolute;
+  top: 100%;
+  right: 5%;
+  background-color: var(--orange);
+  border: none;
+  color: #ffffff;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authBtn {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background-color: transparent;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.36s ease-in-out;
+}
+
+.authBtn:hover {
+  outline-color: var(--orange);
+}
+
+.authBtn:focus {
+  outline-color: var(--orange);
+}
+
+.authBtn:active {
+  outline-color: var(--orange);
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+}
+
+.login {
+  display: flex;
+  justify-content: flex-end;
   padding: 0;
   border: none;
   cursor: pointer;
   background-color: transparent;
-  width: 30px;
-  height: 30px;
+  height: 34px;
+}
+
+.loginImg {
+  padding-right: 10px;
+}
+
+.loginText {
+  margin: auto 0;
+}
+
+.loginText:hover {
+  color: var(--orange);
+}
+
+.loginText:focus {
+  color: var(--orange);
+}
+
+.loginText:active {
+  color: var(--orange);
 }
