@@ -17,7 +17,8 @@
 .logout {
   position: absolute;
   top: 100%;
-  right: 5%;
+  right: 50%;
+  transform: translateX(50%);
   background-color: var(--orange);
   border: none;
   color: #ffffff;
@@ -73,6 +74,7 @@
 
 .loginImg {
   padding-right: 10px;
+  height: 34px;
 }
 
 .loginText {
