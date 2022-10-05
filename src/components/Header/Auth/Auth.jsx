@@ -6,9 +6,9 @@ import { useAuth } from 'hooks/useAuth';
 import { deleteToken } from 'store/tokenReducer';
 
 import style from './Auth.module.css';
-import { ReactComponent as LoginSvg } from './img/login.svg';
 import { Text } from 'UI/Text';
 import Preloader from 'UI/Preloader';
+import SVG from 'UI/Svg';
 
 export const Auth = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ export const Auth = () => {
         </>
       ) : (
         <button type="button" className={style.authBtn} onClick={login}>
-          <LoginSvg className={style.svg} />
+          <SVG itemName={'Login'} className={'svg'} height={34} width={34} />
         </button>
       )}
     </div>
