@@ -1,0 +1,17 @@
+.cardPhotoLike {
+  align-self: normal;
+  background-color: transparent;
+  background-image: url('./img/like.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 1/1;
+  border: none;
+  color: #ffffff;
+  line-height: 1;
+  padding: 10px;
+}
+
+.cardPhotoLike:hover {
+  outline: 2px solid var(--orange);
+}
