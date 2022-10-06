@@ -12,13 +12,14 @@
   position: relative;
   right: 0;
   bottom: 4px;
-  color: #000000;
+  left: 0;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  text-align: center;
-  background-color: var(--greyE6);
-  left: 0;
   align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--black);
+  background-color: var(--greyE6);
   padding: 5px;
 }

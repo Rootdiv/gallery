@@ -2,8 +2,7 @@ import axios from 'axios';
 import { API_URL_PHOTOS, ACCESS_KEY } from 'api/const';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const photosRequestAsync = createAsyncThunk('photos/fetch', (idPhoto, { getState }) => {
-  const token = getState().token.token;
+export const photosRequestAsync = createAsyncThunk('photos/fetch', (_, { getState }) => {
   const photos = getState().photos.photos;
   const count = getState().photos.count;
   const page = getState().photos.page;
@@ -11,18 +10,8 @@ export const photosRequestAsync = createAsyncThunk('photos/fetch', (idPhoto, { g
 
   const url = new URL(API_URL_PHOTOS);
   url.searchParams.set('client_id', ACCESS_KEY);
-  if (count && page) {
-    url.searchParams.append('per_page', count);
-    url.searchParams.append('page', page);
-  }
-
-  if (idPhoto) {
-    url.pathname += `/${idPhoto}`;
-  }
-
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
+  url.searchParams.append('per_page', count);
+  url.searchParams.append('page', page);
 
   return axios(url.href, {
     headers,
