@@ -30,11 +30,12 @@ export const authRequestAsync = () => (dispatch, getState) => {
   if (!token) return;
 
   dispatch(authRequest());
-  axios(`${API_URL}/me`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  axios
+    .get(`${API_URL}/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(({ data: { name, profile_image: iconImg } }) => {
       const img = iconImg.small.replace(/\?.*$/, '');
       const data = { name, img };

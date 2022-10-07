@@ -14,9 +14,10 @@ export const photoRequestAsync = createAsyncThunk('photo/fetch', (id, { getState
     headers.Authorization = `Bearer ${token}`;
   }
 
-  return axios(url.href, {
-    headers,
-  })
+  return axios
+    .get(url.href, {
+      headers,
+    })
     .then(({ data }) => ({ photo: data }))
     .catch(error => {
       console.error('Произошла ошибка: ', error);
