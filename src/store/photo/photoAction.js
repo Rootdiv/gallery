@@ -18,9 +18,10 @@ export const photoRequestAsync = createAsyncThunk('photo/fetch', (id, { getState
     .get(url.href, {
       headers,
     })
-    .then(({ data }) => ({ photo: data }))
-    .catch(error => {
-      console.error('Произошла ошибка: ', error);
-      return { error: error.toString() };
-    });
+    .then(({ data }) => {
+      const likes = data.likes;
+      const isLiked = data.liked_by_user;
+      return { photo: data, likes, isLiked };
+    })
+    .catch(error => ({ error: error.toString() }));
 });

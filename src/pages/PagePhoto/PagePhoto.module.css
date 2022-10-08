@@ -54,6 +54,10 @@
   font-weight: 500;
 }
 
+.photoLike:hover {
+  border-color: var(--orange);
+}
+
 .svg {
   width: 100%;
   height: 100%;

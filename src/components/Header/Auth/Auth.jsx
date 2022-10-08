@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { urlAuth } from 'api/auth';
 import { useAuth } from 'hooks/useAuth';
@@ -14,8 +14,13 @@ export const Auth = () => {
   const dispatch = useDispatch();
   const [auth, loading, clearAuth] = useAuth();
   const [showLogout, setShowLogout] = useState(false);
+  const errorPhoto = useSelector(state => state.auth.error);
+  const errorPhotos = useSelector(state => state.photos.error);
 
   const login = () => {
+    if (errorPhoto.includes('403') || errorPhotos.includes('403')) {
+      return;
+    }
     location.href = urlAuth;
   };
 

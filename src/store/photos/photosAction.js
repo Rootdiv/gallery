@@ -14,8 +14,8 @@ export const photosRequestAsync = createAsyncThunk('photos/fetch', (_, { getStat
 
   return axios
     .get(url.href)
-    .then(({ data }) => {
-      let newPhotos = data;
+    .then(data => {
+      let newPhotos = data.data;
       if (page > 1) {
         newPhotos = [...photos, ...newPhotos];
       }
@@ -23,8 +23,5 @@ export const photosRequestAsync = createAsyncThunk('photos/fetch', (_, { getStat
         photos: newPhotos,
       };
     })
-    .catch(error => {
-      console.error('Произошла ошибка: ', error);
-      return { error: error.toString() };
-    });
+    .catch(error => ({ error: error.toString() }));
 });

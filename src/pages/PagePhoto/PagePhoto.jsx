@@ -1,31 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { photoRequestAsync } from 'store/photo/photoAction';
 import { photoSlice } from 'store/photo/photoSlice';
 import formatDate from 'utils/formatDate';
 import style from './PagePhoto.module.css';
 import Preloader from 'UI/Preloader';
 import SVG from 'UI/Svg';
+import { Text } from 'UI/Text';
+import { likeUpdate } from 'api/like';
+import { usePhotoData } from 'hooks/usePhotoData';
 
 export const PagePhoto = () => {
-  const photo = useSelector(state => state.photo.photo);
-  const [liked, setLiked] = useState(photo.liked_by_user);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [loading, photo, likes, isLiked, error] = usePhotoData(id);
+  const token = useSelector(state => state.token.token);
 
   useEffect(() => {
     dispatch(photoSlice.actions.newPhoto());
-    dispatch(photoRequestAsync(id));
   }, []);
 
   const handleLaked = () => {
-    setLiked(!liked);
+    if (!token) return;
+    dispatch(photoSlice.actions.changeLike());
+    const method = isLiked ? 'DELETE' : 'POST';
+    likeUpdate(id, token, method);
   };
 
-  return (
+  return !error.includes('403') ? (
     <div className={style.photoWrapper}>
-      {!photo.id ? (
+      {loading || !photo.id ? (
         <Preloader color="#56af27" size={150} />
       ) : (
         <>
@@ -42,12 +46,16 @@ export const PagePhoto = () => {
           <div className={style.photoInfo}>
             <p>{formatDate(photo.created_at)}</p>
             <button id={photo.id} type="button" className={style.photoLike} onClick={handleLaked}>
-              <SVG itemName={liked ? 'Liked' : 'Like'} className={style.svg} height={20} width={20} />
-              {liked ? photo.likes + 1 : photo.likes}
+              <SVG itemName={isLiked ? 'Liked' : 'Like'} className={style.svg} height={20} width={20} />
+              {likes}
             </button>
           </div>
         </>
       )}
     </div>
+  ) : (
+    <Text As="h1" center tsize={20}>
+      Исчерпан лимит запросов, повторите попытку через 1 час
+    </Text>
   );
 };

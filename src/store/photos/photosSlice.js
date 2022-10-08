@@ -25,8 +25,8 @@ export const photosSlice = createSlice({
     },
     [photosRequestAsync.fulfilled.type]: (state, action) => {
       state.loading = false;
-      state.photos = action.payload.photos;
-      state.error = '';
+      state.photos = action.payload.photos || [];
+      state.error = action.payload.error || '';
       state.page += 1;
     },
     [photosRequestAsync.rejected.type]: (state, action) => {
