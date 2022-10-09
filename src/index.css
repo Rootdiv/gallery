@@ -53,7 +53,7 @@ html {
 body {
   min-width: 300px;
   min-height: 100vh;
-  font-family: 'Inter', 'Montserrat', 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 400;
   margin: 0;

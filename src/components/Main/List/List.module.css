@@ -1,4 +1,22 @@
 .grid {
-  column-count: 4;
+  column-count: 1;
   gap: 10px;
+}
+
+@media (min-width: 560px) {
+  .grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 920px) {
+  .grid {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    column-count: 4;
+  }
 }
