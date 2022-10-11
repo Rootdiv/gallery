@@ -3,12 +3,14 @@ import { ReactComponent as Login } from './image/login.svg';
 import { ReactComponent as Logo } from './image/logo.svg';
 import { ReactComponent as Like } from './image/like.svg';
 import { ReactComponent as Liked } from './image/liked.svg';
+import { ReactComponent as Search } from './image/search.svg';
 
 const SVGCollection = {
   Login,
   Logo,
   Like,
   Liked,
+  Search,
 };
 
 export const SVG = ({ itemName, className, width, height }) => {

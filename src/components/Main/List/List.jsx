@@ -7,18 +7,31 @@ import { photosRequestAsync } from 'store/photos/photosAction';
 import { photosSlice } from 'store/photos/photosSlice';
 import { generateRandomId } from 'utils/generateRandomId';
 import { Text } from 'UI/Text';
+import { useLocation } from 'react-router-dom';
+import { searchRequestAsync } from 'store/search/searchAction';
 
 export const List = () => {
-  const loading = useSelector(state => state.photos.loading);
-  const photos = useSelector(state => state.photos.photos);
-  const error = useSelector(state => state.photos.error);
-  const page = useSelector(state => state.photos.page);
+  const location = useLocation();
+  const pageList = location.pathname !== '/search';
+  const type = pageList ? 'photos' : 'search';
+  const loading = useSelector(state => state[type].loading);
+  const photos = useSelector(state => state[type].photos);
+  const error = useSelector(state => state[type].error);
+  const page = useSelector(state => state[type].page);
+  const search = useSelector(state => state.search.search);
+  const totalPages = useSelector(state => state.search.total_pages);
   const endList = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(photosSlice.actions.firstPhotos());
-    dispatch(photosRequestAsync());
+    if (type === 'search' && search.trim() !== '') {
+      // На странице поиска при gecnjq запросе ничего не далаем
+      dispatch(searchRequestAsync(search));
+    } else if (type === 'photos') {
+      // На странице поиска запрос фотографий не нужен
+      dispatch(photosSlice.actions.firstPhotos());
+      dispatch(photosRequestAsync());
+    }
   }, []);
 
   useEffect(() => {
@@ -27,7 +40,11 @@ export const List = () => {
     const observer = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting) {
-          dispatch(photosRequestAsync());
+          if (type === 'search' && page <= totalPages) {
+            dispatch(searchRequestAsync(search));
+          } else {
+            dispatch(photosRequestAsync());
+          }
         }
       },
       {

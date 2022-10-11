@@ -1,5 +1,5 @@
 .photoWrapper {
-  padding-top: 52px;
+  padding-top: 62px;
   width: max-content;
   display: grid;
   max-width: 100%;
@@ -12,9 +12,15 @@
   margin: 0 auto 15px;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 560px) {
   .photoWrapper {
-    padding-top: unset;
+    padding-top: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .photoWrapper {
+    padding-top: 0;
   }
 }
 
@@ -67,13 +73,13 @@
   object-fit: cover;
 }
 
-@media (min-width: 420px) {
+@media (min-width: 768px) {
   .photoAuthor {
     justify-content: space-evenly;
   }
 }
 
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .photoWrapper {
     grid-template-areas:
       'photo photo'

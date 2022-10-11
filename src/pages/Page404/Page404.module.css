@@ -6,4 +6,17 @@
   gap: 30px;
   background-color: var(--greyED);
   height: 90vh;
+  margin-top: 62px;
+}
+
+@media (min-width: 560px) {
+  .wrapper {
+    margin-top: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    margin-top: 0;
+  }
 }

@@ -97,7 +97,7 @@ fieldset {
   padding: 10px;
   text-align: center;
   flex-basis: 100%;
-  order: 1;
+  order: 2;
 }
 
 .link:hover {
@@ -105,9 +105,9 @@ fieldset {
   border-color: var(--orange);
 }
 
-@media (min-width: 400px) {
+@media (min-width: 560px) {
   .link {
     flex-basis: auto;
-    order: unset;
+    order: 1;
   }
 }
