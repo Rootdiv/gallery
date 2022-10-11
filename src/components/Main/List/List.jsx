@@ -48,12 +48,14 @@ export const List = () => {
     <>
       {page === 1 && loading && <Preloader color="#56af27" size={150} />}
       {!error.includes('403') ? (
-        <ul className={style.grid}>
-          {photos.map(photos => (
-            <Photo key={generateRandomId()} photos={photos} />
-          ))}
+        <>
+          <ul className={style.grid}>
+            {photos.map(photos => (
+              <Photo key={generateRandomId()} photos={photos} />
+            ))}
+          </ul>
           {page !== 1 && loading && <Preloader color="#56af27" size={150} />}
-        </ul>
+        </>
       ) : (
         <Text As="h1" center tsize={20}>
           Исчерпан лимит запросов, повторите попытку через 1 час

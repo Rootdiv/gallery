@@ -1,9 +1,5 @@
-.photo {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
 .photoWrapper {
+  padding-top: 52px;
   width: max-content;
   display: grid;
   max-width: 100%;
@@ -14,6 +10,12 @@
     'author';
   gap: 20px;
   margin: 0 auto 15px;
+}
+
+@media (min-width: 400px) {
+  .photoWrapper {
+    padding-top: unset;
+  }
 }
 
 .photoPicture {

@@ -1,7 +1,11 @@
 .card {
-  position: relative;
   min-height: 150px;
   margin-bottom: 8px;
+}
+
+.cardLink {
+  display: block;
+  line-height: 0;
 }
 
 .cardAuthor:hover {
@@ -9,10 +13,6 @@
 }
 
 .cardInfo {
-  position: relative;
-  right: 0;
-  bottom: 4px;
-  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
