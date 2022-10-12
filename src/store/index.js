@@ -4,6 +4,7 @@ import { authReducer } from './auth/authReducer';
 import photosSlice from './photos/photosSlice';
 import photoSlice from './photo/photoSlice';
 import searchSlice from './search/searchSlice';
+import userInfoSlice from './userInfo/userInfoSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     photos: photosSlice,
     photo: photoSlice,
     search: searchSlice,
+    userInfo: userInfoSlice,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(tokenMiddleware),
 });

@@ -1,0 +1,42 @@
+.wrapper {
+  padding-top: 62px;
+}
+
+@media (min-width: 560px) {
+  .wrapper {
+    padding-top: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    padding-top: 0;
+  }
+}
+
+.likeTotal {
+  margin-bottom: 10px;
+}
+
+.listPhoto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.itemPhoto {
+  text-align: center;
+}
+
+.photoLike {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  gap: 5px;
+  line-height: 1.5;
+}
+
+.svg {
+  object-fit: cover;
+}

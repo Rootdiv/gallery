@@ -36,9 +36,9 @@ export const authRequestAsync = () => (dispatch, getState) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(({ data: { name, profile_image: iconImg } }) => {
+    .then(({ data: { name, profile_image: iconImg, username } }) => {
       const img = iconImg.small.replace(/\?.*$/, '');
-      const data = { name, img };
+      const data = { name, img, username };
       dispatch(updateToken(token));
       dispatch(authRequestSuccess(data));
     })

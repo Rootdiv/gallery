@@ -1,15 +1,4 @@
-.btn {
-  display: block;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-}
-
 .container {
-  position: relative;
   display: block;
   text-align: center;
 }
@@ -21,17 +10,17 @@
 }
 
 .logout {
-  position: absolute;
-  top: 100%;
-  right: 50%;
-  transform: translateX(50%);
-  background-color: var(--orange);
-  border: none;
-  color: #ffffff;
-  padding: 4px;
+  background-color: transparent;
+  border: 1px solid var(--black);
+  color: var(--black);
+  padding: 6px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
+}
+
+.logout:hover {
+  border-color: var(--orange);
 }
 
 .img {
@@ -70,12 +59,11 @@
 
 .login {
   display: flex;
-  justify-content: flex-end;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  height: 34px;
+  gap: 10px;
+}
+
+.loginLink {
+  display: flex;
 }
 
 .loginImg {
@@ -88,13 +76,5 @@
 }
 
 .loginText:hover {
-  color: var(--orange);
-}
-
-.loginText:focus {
-  color: var(--orange);
-}
-
-.loginText:active {
   color: var(--orange);
 }

@@ -24,7 +24,7 @@ export const getToken = () => {
         location.replace('/');
       })
       .catch(err => {
-        console.error('Произошла ошибка: ', err);
+        console.error('Произошла ошибка: ', err.message);
       });
   }
 

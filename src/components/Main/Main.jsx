@@ -5,6 +5,7 @@ import List from './List';
 import PagePhoto from 'pages/PagePhoto';
 import { Routes, Route } from 'react-router-dom';
 import Page404 from 'pages/Page404';
+import PageProflie from 'pages/PageProflie';
 
 export const Main = () => (
   <main className={style.main}>
@@ -13,6 +14,7 @@ export const Main = () => (
         <Route path="/" element={<List />} />
         <Route path="/photo/:id" element={<PagePhoto />} />
         <Route path="/search" element={<List />} />
+        <Route path="/profile" element={<PageProflie />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </Layout>
