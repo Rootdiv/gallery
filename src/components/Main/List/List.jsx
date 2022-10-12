@@ -9,6 +9,7 @@ import { generateRandomId } from 'utils/generateRandomId';
 import { Text } from 'UI/Text';
 import { useLocation } from 'react-router-dom';
 import { searchRequestAsync } from 'store/search/searchAction';
+import Masonry from 'react-masonry-component';
 
 export const List = () => {
   const location = useLocation();
@@ -61,16 +62,22 @@ export const List = () => {
     };
   }, [page]);
 
+  const masonryOptions = {
+    itemSelector: 'li',
+    isFitWidth: true,
+    gutter: 10,
+  };
+
   return (
     <>
       {page === 1 && loading && <Preloader color="#56af27" size={150} />}
       {!error.includes('403') ? (
         <>
-          <ul className={style.grid}>
+          <Masonry elementType={'ul'} className={style.grid} options={masonryOptions}>
             {photos.map(photos => (
               <Photo key={generateRandomId()} photos={photos} />
             ))}
-          </ul>
+          </Masonry>
           {page !== 1 && loading && <Preloader color="#56af27" size={150} />}
         </>
       ) : (
