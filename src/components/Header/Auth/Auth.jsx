@@ -46,7 +46,7 @@ export const Auth = () => {
         </div>
       ) : (
         <button type="button" className={style.authBtn} onClick={login}>
-          <SVG itemName={'Login'} className={'svg'} height={34} width={34} />
+          <SVG itemName={'Login'} width={34} height={34} />
         </button>
       )}
     </div>

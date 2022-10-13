@@ -46,7 +46,7 @@ export const PagePhoto = () => {
           <div className={style.photoInfo}>
             <p>{formatDate(photo.created_at)}</p>
             <button id={photo.id} type="button" className={style.photoLike} onClick={handleLaked}>
-              <SVG itemName={isLiked ? 'Liked' : 'Like'} className={style.svg} height={20} width={20} />
+              <SVG itemName={isLiked ? 'Liked' : 'Like'} width={20} height={20} />
               {likes}
             </button>
           </div>

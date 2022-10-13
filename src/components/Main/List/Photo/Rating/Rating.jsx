@@ -46,7 +46,7 @@ export const Rating = ({ id, likes, liked }) => {
 
   return (
     <button id={id} type="button" className={style.cardPhotoLike} onClick={handleLaked}>
-      <SVG itemName={isLikedByUser ? 'Liked' : 'Like'} className={style.svg} height={20} width={20} />
+      <SVG itemName={isLikedByUser ? 'Liked' : 'Like'} width={20} height={20} />
       {likesByUser}
     </button>
   );

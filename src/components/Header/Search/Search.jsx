@@ -36,7 +36,7 @@ export const Search = () => {
     <form className={style.form} onSubmit={handlerSubmit}>
       <input type="search" className={style.search} onChange={handlerSearch} value={search} />
       <button className={style.button} type="submit">
-        <SVG itemName={'Search'} className={'svg'} />
+        <SVG itemName={'Search'} />
       </button>
     </form>
   );

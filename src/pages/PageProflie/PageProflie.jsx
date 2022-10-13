@@ -36,7 +36,7 @@ export const PageProflie = () => {
               <img src={urls.thumb} alt={description} className={style.img} />
             </Link>
             <div className={style.photoLike}>
-              <SVG itemName={'Liked'} className={style.svg} height={20} width={20} />
+              <SVG itemName={'Liked'} width={20} height={20} />
               Всего {declOfNum(likes, ['лайк', 'лайка', 'лайков'])}
             </div>
           </li>
