@@ -11,6 +11,8 @@
   padding-left: 10px;
   padding-right: 35px;
   width: 100%;
+  outline-offset: unset;
+  border-color: var(--greyE6);
 }
 
 .search::-webkit-search-cancel-button {
