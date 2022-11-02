@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { photoRequestAsync } from 'store/photo/photoAction';
+import { photoRequest } from 'store/photo/photoAction';
 
 export const usePhotoData = id => {
   const loading = useSelector(state => state.photo.loading);
@@ -11,7 +11,7 @@ export const usePhotoData = id => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(photoRequestAsync(id));
+    dispatch(photoRequest(id));
   }, []);
 
   return [loading, photo, likes, isLiked, error];

@@ -5,7 +5,7 @@ import style from './Search.module.css';
 import SVG from 'UI/Svg';
 import { searchSlice } from 'store/search/searchSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { searchRequestAsync } from 'store/search/searchAction';
+import { searchRequest } from 'store/search/searchAction';
 
 export const Search = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export const Search = () => {
     event.preventDefault();
     dispatch(searchSlice.actions.newSearch());
     if (search.trim() !== '') {
-      dispatch(searchRequestAsync(search));
+      dispatch(searchRequest(search));
     }
     navigation('/search');
   };

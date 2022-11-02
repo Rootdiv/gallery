@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { userInfoRequestAsync } from './userInfoAction';
 
 const initialState = {
   loading: false,
@@ -14,20 +13,17 @@ export const userInfoSlice = createSlice({
     newUserInfo: state => {
       state.photos = [];
     },
-  },
-  extraReducers: {
-    [userInfoRequestAsync.pending.type]: state => {
+    userInfoRequest: state => {
       state.loading = true;
       state.error = '';
     },
-    [userInfoRequestAsync.fulfilled.type]: (state, action) => {
+    userInfoRequestSuccess: (state, action) => {
       state.loading = false;
-      state.photos = action.payload?.photos || [];
-      state.error = action.payload?.error || '';
+      state.photos = action.payload.photos;
     },
-    [userInfoRequestAsync.rejected.type]: (state, action) => {
+    userInfoRequestError: (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     },
   },
 });

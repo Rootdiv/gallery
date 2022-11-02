@@ -1,38 +1,20 @@
-import axios from 'axios';
-import { API_URL, ACCESS_KEY } from 'api/const';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+export const SEARCH_REQUEST = 'SEARCH_REQUEST';
+const SEARCH_REQUEST_SUCCESS = 'SEARCH_REQUEST_SUCCESS';
+const SEARCH_REQUEST_ERROR = 'SEARCH_REQUEST_ERROR';
 
-export const searchRequestAsync = createAsyncThunk('search/fetch', (search, { getState }) => {
-  const token = getState().token.token;
-  const photos = getState().search.photos;
-  const count = getState().search.count;
-  const page = getState().search.page;
-  const headers = {};
+export const searchRequest = search => ({
+  type: SEARCH_REQUEST,
+  search,
+});
 
-  const url = new URL(`${API_URL}/search/photos`);
-  url.searchParams.set('client_id', ACCESS_KEY);
-  url.searchParams.append('query', search);
-  url.searchParams.append('per_page', count);
-  url.searchParams.append('page', page);
+export const searchRequestSuccess = (search, photos, totalPages) => ({
+  type: SEARCH_REQUEST_SUCCESS,
+  search,
+  photos,
+  total_pages: totalPages,
+});
 
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
-
-  return axios
-    .get(url.href, {
-      headers,
-    })
-    .then(data => {
-      let addSearch = data.data.results;
-      if (page > 1) {
-        addSearch = [...photos, ...addSearch];
-      }
-      return {
-        search,
-        photos: addSearch,
-        total_pages: data.data.total_pages,
-      };
-    })
-    .catch(error => ({ error: error.toString() }));
+export const searchRequestError = error => ({
+  type: SEARCH_REQUEST_ERROR,
+  error,
 });

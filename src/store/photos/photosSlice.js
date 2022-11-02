@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { photosRequestAsync } from './photosAction';
 
 const initialState = {
   loading: false,
@@ -17,21 +16,19 @@ export const photosSlice = createSlice({
       state.photos = [];
       state.page = 1;
     },
-  },
-  extraReducers: {
-    [photosRequestAsync.pending.type]: state => {
+    photosRequest: state => {
       state.loading = true;
       state.error = '';
     },
-    [photosRequestAsync.fulfilled.type]: (state, action) => {
+    photosRequestSuccess: (state, action) => {
       state.loading = false;
-      state.photos = action.payload.photos || [];
-      state.error = action.payload.error || '';
+      state.photos = action.payload.photos;
+      state.error = '';
       state.page += 1;
     },
-    [photosRequestAsync.rejected.type]: (state, action) => {
+    photosRequestError: (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     },
   },
 });

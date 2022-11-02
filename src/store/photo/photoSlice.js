@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { photoRequestAsync } from './photoAction';
 
 const initialState = {
   loading: false,
@@ -20,22 +19,19 @@ export const photoSlice = createSlice({
       state.isLiked = !state.isLiked;
       state.likes += state.isLiked ? 1 : -1;
     },
-  },
-  extraReducers: {
-    [photoRequestAsync.pending.type]: state => {
+    photoRequest: state => {
       state.loading = true;
       state.error = '';
     },
-    [photoRequestAsync.fulfilled.type]: (state, action) => {
+    photoRequestSuccess: (state, action) => {
       state.loading = false;
-      state.photo = action.payload?.photo || {};
-      state.likes = action.payload?.likes || 0;
-      state.isLiked = action.payload?.isLiked || false;
-      state.error = action.payload?.error || '';
+      state.photo = action.payload.photo;
+      state.likes = action.payload.likes;
+      state.isLiked = action.payload.isLiked;
     },
-    [photoRequestAsync.rejected.type]: (state, action) => {
+    photoRequestError: (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     },
   },
 });

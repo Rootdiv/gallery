@@ -1,27 +1,20 @@
-import axios from 'axios';
-import { API_URL_PHOTOS, ACCESS_KEY } from 'api/const';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+export const PHOTO_REQUEST = 'PHOTO_REQUEST';
+const PHOTO_REQUEST_SUCCESS = 'PHOTO_REQUEST_SUCCESS';
+const PHOTO_REQUEST_ERROR = 'PHOTO_REQUEST_ERROR';
 
-export const photoRequestAsync = createAsyncThunk('photo/fetch', (id, { getState }) => {
-  const token = getState().token.token;
-  const headers = {};
+export const photoRequest = id => ({
+  type: PHOTO_REQUEST,
+  id,
+});
 
-  const url = new URL(API_URL_PHOTOS);
-  url.searchParams.set('client_id', ACCESS_KEY);
-  url.pathname += `/${id}`;
+export const photoRequestSuccess = (photo, likes, isLiked) => ({
+  type: PHOTO_REQUEST_SUCCESS,
+  photo,
+  likes,
+  isLiked,
+});
 
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
-
-  return axios
-    .get(url.href, {
-      headers,
-    })
-    .then(({ data }) => {
-      const likes = data.likes;
-      const isLiked = data.liked_by_user;
-      return { photo: data, likes, isLiked };
-    })
-    .catch(error => ({ error: error.toString() }));
+export const photoRequestError = error => ({
+  type: PHOTO_REQUEST_ERROR,
+  error,
 });

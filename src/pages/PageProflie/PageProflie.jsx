@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './PageProflie.module.css';
 import { userInfoSlice } from 'store/userInfo/userInfoSlice';
-import { userInfoRequestAsync } from 'store/userInfo/userInfoAction';
+import { userInfoRequest } from 'store/userInfo/userInfoAction';
 import { Link, useNavigate } from 'react-router-dom';
 import SVG from 'UI/Svg';
 import Preloader from 'UI/Preloader';
@@ -21,7 +21,7 @@ export const PageProflie = () => {
       navigation('/');
     }
     dispatch(userInfoSlice.actions.newUserInfo());
-    dispatch(userInfoRequestAsync(auth.username));
+    dispatch(userInfoRequest(auth.username));
   }, [auth]);
 
   return loading ? (

@@ -3,12 +3,12 @@ import { useEffect, useRef } from 'react';
 import Photo from './Photo';
 import Preloader from 'UI/Preloader';
 import { useDispatch, useSelector } from 'react-redux';
-import { photosRequestAsync } from 'store/photos/photosAction';
+import { photosRequest } from 'store/photos/photosAction';
 import { photosSlice } from 'store/photos/photosSlice';
 import { generateRandomId } from 'utils/generateRandomId';
 import { Text } from 'UI/Text';
 import { useLocation } from 'react-router-dom';
-import { searchRequestAsync } from 'store/search/searchAction';
+import { searchRequest } from 'store/search/searchAction';
 import Masonry from 'react-masonry-component';
 
 export const List = () => {
@@ -25,15 +25,11 @@ export const List = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (type === 'search' && search.trim() !== '') {
-      // На странице поиска при gecnjq запросе ничего не далаем
-      dispatch(searchRequestAsync(search));
-    } else if (type === 'photos') {
-      // На странице поиска запрос фотографий не нужен
+    if (type === 'photos') {
       dispatch(photosSlice.actions.firstPhotos());
-      dispatch(photosRequestAsync());
+      dispatch(photosRequest());
     }
-  }, []);
+  }, [pageList]);
 
   useEffect(() => {
     if (!photos.length) return;
@@ -42,9 +38,9 @@ export const List = () => {
       entries => {
         if (entries[0].isIntersecting) {
           if (type === 'search' && page <= totalPages) {
-            dispatch(searchRequestAsync(search));
+            dispatch(searchRequest(search));
           } else {
-            dispatch(photosRequestAsync());
+            dispatch(photosRequest());
           }
         }
       },
