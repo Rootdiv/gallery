@@ -25,15 +25,12 @@ export const List = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (type === 'search' && search.trim() !== '') {
-      // На странице поиска при gecnjq запросе ничего не далаем
-      dispatch(searchRequestAsync(search));
-    } else if (type === 'photos') {
+    if (type === 'photos') {
       // На странице поиска запрос фотографий не нужен
       dispatch(photosSlice.actions.firstPhotos());
       dispatch(photosRequestAsync());
     }
-  }, []);
+  }, [pageList]);
 
   useEffect(() => {
     if (!photos.length) return;
