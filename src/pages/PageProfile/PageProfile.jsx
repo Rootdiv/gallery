@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import style from './PageProflie.module.css';
+import style from './PageProfile.module.css';
 import { userInfoSlice } from 'store/userInfo/userInfoSlice';
 import { userInfoRequest } from 'store/userInfo/userInfoAction';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import SVG from 'UI/Svg';
 import Preloader from 'UI/Preloader';
 import { declOfNum } from 'utils/declOfNum';
 
-export const PageProflie = () => {
+export const PageProfile = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const token = useSelector(state => state.token.token);
